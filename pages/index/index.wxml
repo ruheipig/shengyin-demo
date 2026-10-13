@@ -1,0 +1,50 @@
+<!-- pages/index/index.wxml -->
+<view class="page">
+  <view class="card px-12">
+    <view style="display:flex; justify-content:space-between; align-items:center;">
+      <view>
+        <text style="font-size:28rpx; color:#5a2a3a; font-weight:600">{{year}}年 {{month}}月</text>
+      </view>
+      <view>
+        <button bindtap="prevMonth" class="btn">上月</button>
+        <button bindtap="nextMonth" class="btn" style="margin-left:10rpx;">下月</button>
+      </view>
+    </view>
+
+    <view class="mt-8" style="display:flex; justify-content:space-between; color:#9b5a69; font-size:20rpx;">
+      <text>日</text><text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text>
+    </view>
+
+    <view class="calendar mt-8">
+      <block wx:for="{{calendarDays}}" wx:key="idx">
+        <view class="day-cell">
+          <view class="day-box" bindtap="openDay" data-date="{{item.date}}">
+            <text class="day-number">{{item.num}}</text>
+            <text class="day-emoji">{{item.emoji}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="mt-8 center">
+      <button bindtap="openToday" class="btn">打开今天</button>
+    </view>
+  </view>
+
+  <view class="px-12" style="margin-top:12rpx;">
+    <view class="card">
+      <text style="font-size:20rpx; color:#7a5a6a;">近期记录（示例）</text>
+      <block wx:for="{{recentList}}" wx:key="id">
+        <view class="mt-8">
+          <view style="display:flex; justify-content:space-between; align-items:center;">
+            <view>
+              <text style="font-size:16rpx; color:#333;">{{item.date}}</text>
+              <text style="display:block; color:var(--muted); font-size:12rpx;">{{item.count}} 条记录</text>
+            </view>
+            <button data-date="{{item.date}}" bindtap="openDay" class="btn">查看</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

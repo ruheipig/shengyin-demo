@@ -1,0 +1,75 @@
+<!-- pages/day/day.wxml -->
+<view class="page">
+  <view class="card px-12">
+    <view style="display:flex; justify-content:space-between; align-items:center;">
+      <view>
+        <text style="font-size:22rpx; color:#5a2a3a; font-weight:600">{{date}}</text>
+        <text style="display:block; color:var(--muted); font-size:12rpx;">{{notes.length}} 条记录</text>
+      </view>
+      <view>
+        <button bindtap="openRecorderSheet" class="btn">记录</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="px-12" style="margin-top:12rpx;">
+    <block wx:if="{{notes.length === 0}}">
+      <view class="card center">
+        <text style="font-size:18rpx; color:var(--muted);">今天还没有记录，试试记录“此刻的声音”或“此刻的画面”吧～</text>
+      </view>
+    </block>
+
+    <block wx:for="{{notes}}" wx:key="id">
+      <view class="card" style="display:flex; flex-direction:column;">
+        <view>
+          <text style="font-size:14rpx; color:var(--muted);">记录时间：{{formatTime(item.createdAt)}}</text>
+        </view>
+
+        <view wx:if="{{item.type === 'photo'}}" class="mt-8">
+          <image src="{{item.src}}" mode="aspectFill" class="thumb" />
+        </view>
+
+        <view wx:if="{{item.type === 'audio'}}" class="mt-8" style="display:flex; align-items:center; justify-content:space-between;">
+          <view style="display:flex; align-items:center;">
+            <button data-id="{{item.id}}" data-src="{{item.src}}" bindtap="playAudio" class="btn">🔊 播放</button>
+            <text style="margin-left:12rpx; color:var(--muted);">音频</text>
+          </view>
+          <text style="color:var(--muted); font-size:12rpx;">（可在真机录制并播放）</text>
+        </view>
+
+        <view style="display:flex; justify-content:flex-end; margin-top:12rpx;">
+          <button data-id="{{item.id}}" bindtap="deleteNote" style="background:#fff; border:1px solid #ffdbe6; color:#ff6b8a; padding:6rpx 12rpx; border-radius:8rpx;">删除</button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{showSheet}}" class="recorder-overlay">
+    <view class="recorder-card">
+      <text style="font-size:18rpx; color:#5a2a3a;">添加记录</text>
+      <view style="margin-top:18rpx;">
+        <button class="btn" bindtap="startRecordFlow">此刻的声音</button>
+        <button class="btn" bindtap="startPhotoFlow" style="margin-left:10rpx;">此刻的画面</button>
+      </view>
+      <view style="margin-top:12rpx;">
+        <button bindtap="closeSheet" style="margin-top:8rpx;">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{recorderVisible}}" class="recorder-overlay">
+    <view class="recorder-card">
+      <text style="font-size:18rpx; color:#5a2a3a;">录音（{{recording ? '录制中' : '已停止'}}）</text>
+      <view class="mt-8">
+        <view bindtap="toggleRecording" class="rec-button {{recording? 'recording' : (recorded ? 'stopped' : '')}}">
+          <text style="font-size:28rpx;">{{recording ? '●' : (recorded ? '▶' : '录')}}</text>
+        </view>
+      </view>
+      <view class="mt-8">
+        <button bindtap="cancelRecord" style="margin-right:10rpx;">取消</button>
+        <button wx:if="{{recorded}}" bindtap="saveRecorded" class="btn">上传到当天</button>
+      </view>
+    </view>
+  </view>
+
+</view>

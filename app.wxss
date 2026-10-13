@@ -1,0 +1,133 @@
+:root {
+  --pink: #ffd6e6;
+  --pink-deep: #ff9fbf;
+  --card-bg: #ffffff;
+  --muted: #8a8a8a;
+}
+
+page {
+  background: linear-gradient(180deg, #fff7fa 0%, #fff 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Microsoft Yahei", "PingFang SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(255, 150, 180, 0.12);
+  margin-bottom: 18rpx;
+}
+
+.btn {
+  background: var(--pink-deep);
+  color: #fff;
+  padding: 10rpx 18rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+}
+
+.center {
+  text-align: center;
+}
+
+.small {
+  font-size: 24rpx;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12rpx;
+}
+
+.day-cell {
+  width: calc(100% / 7);
+  padding: 12rpx;
+  box-sizing: border-box;
+}
+
+.day-box {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 14rpx;
+  text-align: center;
+  cursor: pointer;
+  min-height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-number {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.day-emoji {
+  font-size: 36rpx;
+  margin-top: 6rpx;
+}
+
+.thumb {
+  width: 100%;
+  max-height: 260rpx;
+  border-radius: 10rpx;
+  object-fit: cover;
+  margin-bottom: 8rpx;
+}
+
+.recorder-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.recorder-card {
+  width: 88%;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.rec-button {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background: #ff6b8a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+.rec-button.recording {
+  background: red;
+}
+
+.rec-button.stopped {
+  background: #2ecc71;
+}
+
+.mt-8 {
+  margin-top: 8rpx;
+}
+
+.mb-8 {
+  margin-bottom: 8rpx;
+}
+
+.px-12 {
+  padding-left: 12rpx;
+  padding-right: 12rpx;
+}

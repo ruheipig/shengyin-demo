@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/day/day"
+  ],
+  "window": {
+    "navigationBarTitleText": "生音",
+    "navigationBarBackgroundColor": "#ffd6e6",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
